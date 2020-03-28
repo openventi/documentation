@@ -10,7 +10,6 @@ addons:
 install:
   - python -m pip install --upgrade pip
   - pip3 install -r requirements.txt
-  - cd files
   - python3 -m sphinx -b html . _build/html
   - mv _build/html/ ../
 only:
