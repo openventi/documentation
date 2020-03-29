@@ -5,14 +5,14 @@ El objetivo de OpenVenti es diseñar un Respirador Artificial que cualquiera pue
 y dar una oportunidad a miles de pacientes que son devueltos a casa sin esperanza de sobrevivir.”
 
 .. image:: files/img/diagrama.png
-  :width: 400
+  :width: 800
   :alt: Alternative text
 
 .. toctree::
    :hidden:
 
    files/app
-   files/datos
-   files/logic
+   files/firmware
+   files/webserver
    
 
