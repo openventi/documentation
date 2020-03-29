@@ -4,11 +4,14 @@ APLICACIÓN MOVIL
 ================
 
 
-
 DESCRIPCIÓN GENERAL
 -------------------
 
 La aplicación móvil OpenVenti tiene como finalidad el monitoreo y administración del respirador artificial del mismo nombre, de forma segura e intuitiva.
+
+
+PERSPECTIVA
+^^^^^^^^^^^
 
 **Estructura de la Aplicación**
 
@@ -16,8 +19,33 @@ La aplicación móvil OpenVenti tiene como finalidad el monitoreo y administraci
   :width: 250
   
 
-INTERFAZ GRÁFICA
-----------------
+USUARIOS
+^^^^^^^^
+
+
+FUNCIONES
+^^^^^^^^^
+aaaa
+
+EMPAREJAMIENTO
+~~~~~~~~~~~~~~
+
+VISUALIZACIÓN DE DATOS
+~~~~~~~~~~~~~~~~~~~~~~
+
+RECEPCIÓN DE DATOS
+~~~~~~~~~~~~~~~~~~
+
+CIERRE DE CESIÓN
+~~~~~~~~~~~~~~~~
+
+
+PANTALLA 
+--------
+
+
+.. image:: img/screen.png
+  :width: 400
 
 
 TRAMAS DE COMUNICACIÓN
@@ -231,9 +259,9 @@ Yubox -> Cliente
    :header: "Atributo", "Detalle"
    :widths: 40, 500
 
-  "**t**", "Tipo de trama siendo 1 una trama de alerta."
-  "**msg**", "Cadena que describe la alerta."
-  "**severidad**", "Nivel de riesgo de la alerta." 
+   "**t**", "Tipo de trama siendo 1 una trama de alerta."
+   "**msg**", "Cadena que describe la alerta."
+   "**severidad**", "Nivel de riesgo de la alerta." 
 ..
 
 **JSON IN**
