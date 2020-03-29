@@ -43,10 +43,15 @@ CIERRE DE CESIÓN
 PANTALLA 
 --------
 
-
 .. image:: img/screen.png
   :width: 400
 
+Los Botones de abajo permiten modificar los siguientes parámetros:
+
+    1) TV o Tidal Volume, que puede estar entre 450 y 600 mL
+    2) PEEP o Presión positiva remanente, que puede estar entre 0 y 8 cmH2o
+    3) Porcentaje de Oxígeno, que puede estar entre 0 y 50%
+    4) RR o Respiration Rate o Respiraciones por minuto, que puede estar entre 9 y 16
 
 TRAMAS DE COMUNICACIÓN
 ----------------------
