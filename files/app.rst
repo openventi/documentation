@@ -3,42 +3,80 @@
 APLICACIÓN MOVIL
 ================
 
-
 DESCRIPCIÓN GENERAL
 -------------------
 
 La aplicación móvil OpenVenti tiene como finalidad el monitoreo y administración del respirador artificial del mismo nombre, de forma segura e intuitiva.
 
+El sistema estará constituido por los siguientes componentes:
 
-PERSPECTIVA
-^^^^^^^^^^^
+-CAD
+-CAMo
+-Seguridades y Administración
+
+------------
 
 **Estructura de la Aplicación**
 
 .. image:: img/structure.png
-  :width: 250
-  
+  :width: 400
 
-USUARIOS
-^^^^^^^^
++--------------------------------------------------------------------------------------------------------- +
+| La arquitectura seleccionada para el desarrollo del sistema es una arquitectura n-capa con cliente WEB. Identificamos como Usuarios comunes aquellos que acceden al sistema para hacer uso de la funcionalidad de la aplicación, e identificamos como usuarios administradores del sistema a aquellos que acceden para realizar mantenimientode la aplicación, administrar seguridades, catálogos, entre otros.
+| Ambos tipos de usuarios dispondrán de una aplicación cliente web, que se comunicará con una aplicación de servidor la cual implementará las reglas del negocio y a su vez será la de intermediaria entre la aplicación cliente web y la base de datos                 |
+|                              |
++------------------------------+
+
 
 
 FUNCIONES
 ^^^^^^^^^
-aaaa
+
+USUARIOS
+~~~~~~~~
 
 EMPAREJAMIENTO
 ~~~~~~~~~~~~~~
 
+
+.. image:: img/con.png
+  :width: 300
+
+
 VISUALIZACIÓN DE DATOS
 ~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: img/datos.png
+  :width: 400
+
+TRANSIMISIÓN DE DATOS
+~~~~~~~~~~~~~~~~~~~~~
+
+Se usara tecnología Wifi, aplicando norma ANSI/TIA 1149, motivo controlar que el espectro radioeléctrico y no obstaculizar conexión de otros equipos, incluso otros ventiladores.
+
+La norma ANSI/TIA 1149 se usa para Servicio de Alerta Móvil Comercial (CMAS) sobre los sistemas CDMA 
+
 
 RECEPCIÓN DE DATOS
 ~~~~~~~~~~~~~~~~~~
 
+
+PANEL DE ADMINISTRACIÓN
+~~~~~~~~~~~~~~~~~~~~~~~
+
+
 CIERRE DE CESIÓN
 ~~~~~~~~~~~~~~~~
 
+
+
+TRATAMIENTO DEL PACIENTE
+------------------------
+
+HISTORIA CLÍNICA
+^^^^^^^^^^^^^^^^
+Número que identifica de manera única al paciente, incluso si regresa a la Institución. 
+Puede ser utilizado el número de DNI. A obtener del HIS del lugar de atención, de ex
 
 PANTALLA 
 --------
@@ -53,240 +91,4 @@ Los Botones de abajo permiten modificar los siguientes parámetros:
     3) Porcentaje de Oxígeno, que puede estar entre 0 y 50%
     4) RR o Respiration Rate o Respiraciones por minuto, que puede estar entre 9 y 16
 
-TRAMAS DE COMUNICACIÓN
-----------------------
 
-DATOS DE GRÁFICAS
-^^^^^^^^^^^^^^^^^
-
-**Orientación**
-
-Yubox ---> Cliente
-
-.. csv-table::  **Parámetros de Entrada**
-   :header: "Atributo", "Detalle"
-   :widths: 40, 500
-
-     "t","Tipo de trama siendo 0 una trama de datos de gráficas"
-     "d", "Arreglo de datos para las tres gráficas, representando un punto a la vez"
-..
-
-**JSON IN**
-
-.. code-block:: javascript
-
- { 
-   "t":0,
-   "d":[
-     (double), 
-     (double),
-     (double)
-   ]
- }
-..
-
-
-**JSON EJEMPLO**
-
-.. code-block:: javascript
-
-  { 
-    "t":0,
-   "d":[
-     1.2, 
-     2.01,
-     3
-   ]
- }
-..
-
-SETEO DE PARÁMETROS
-^^^^^^^^^^^^^^^^^^^
-
-**Orientación**
-
-Cliente -> Yubox -> Cliente
-
-.. csv-table::  **Parámetros de Entrada**
-   :header: "Atributo", "Detalle"
-   :widths: 40, 500
-
-     "**id**", "Identificador de transacción. Permite mapear respuestas a peticiones."
-     "**action**","Acción a realizar. Para el seteo de parámetros es la cadena **set** "
-     "**param**", "Parámetro del respirador que se quiere setear (Valores posibles: **TV,**  **PEEP,** **O2,** **RR**)."
-     "**value**", "Valor que se desea setear al parámetro definido en **param**" 
-     "**ts**", "Timestamp en formato UNIX en el que se realiza la petición."
-     "**token**", "Token HMAC para autenticación e integridad de datos."
-..
-
-.. note::
-
-  **ts:** En formato Unix necesario para evitar ataques de replay.
-  **token:** Deberá calcularse sobre la trama con el token seteado en una cadena vacía.
-..
-
-
-**JSON IN**
-
-.. code-block:: javascript
-
- {
-    "id": (int),
-    "action": "set",
-    "param": (string),
-    "value": (mixed),
-    "ts": (int),
-    "token": (string)
- }
-..
-
-**JSON EJEMPLO**
-
-.. code-block:: javascript
-
- { 
-    "id":12345,
-    "action":"set",
-    "param":"PEEP",
-    "value":5.2,
-    "token":"ba837ba9ba837ba9ba837ba9ba837ba9ba837ba9"
- }
-..
-
-**JSON RESPUESTA**
-
-.. code-block:: javascript
-
- {
-    "id":12345,
-    "status":200,
-    "msg":"Operación_Exitosa",
-    "value":5.2,
-    "token":"1231231212312312123123121231231212312312"
- }
-..
-
-
-.. csv-table::  **Respuesta**
-   :header: "Atributo", "Detalle"
-   :widths: 40, 500
-
-     "**id**", "dentificador de transacción. Permite mapear respuestas a peticiones."
-     "**status**","Estado de cumplimiento de la transacción."
-     "**msg**", "Respuesta del resultado de la transacción."
-     "**value**", "Valor que se desea setear al parámetro definido en **param**." 
-     "**token**", "Token HMAC para autenticación e integridad de datos."
-..
-
-.. note::
-  La respuesta deberá reflejar el mismo id recibido en la petición.
-..
-
-OBTENCIÓN DE PÁRAMETROS
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Cliente -> Yubox -> Cliente
-
-.. csv-table::  **Parámetros de Entrada**
-   :header: "Atributo", "Detalle"
-   :widths: 40, 500
-
-     "**id**", "Identificador de transacción. Permite mapear respuestas a peticiones."
-     "**action**","Acción a realizar. Para el seteo de parámetros es la cadena **get**."
-     "**param**", "Parámetro del respirador que se quiere setear (Valores posibles: **TV,**  **PEEP,** **O2,** **RR**)."
-     "**token**", "Token HMAC para autenticación e integridad de datos."
-..
-
-.. note::
-  **token:** Deberá calcularse sobre la trama con el token seteado en una cadena vacía.
-..
-
-**JSON IN**
-
-.. code-block:: javascript
-
- {
-    "id": (int),
-    "action": "get",
-    "param": (string),
-    "token": (string)
- }
-..
-
-**JSON EJEMPLO**
-
-.. code-block:: javascript
-
- {
-    "id":12345,
-    "action":"get",
-    "param":"PEEP",
-    "token":"ba837ba9ba837ba9ba837ba9ba837ba9ba837ba9"
- }
-..
-
-**JSON RESPUESTA**
-
-.. code-block:: javascript
-
- {
-    "id":12345,
-    "status":200,
-    "msg":"Operación_Exitosa",
-    "value":5.2,
-    "token":"1231231212312312123123121231231212312312"
- }
-..
-
-.. csv-table::  **Respuesta**
-   :header: "Atributo", "Detalle"
-   :widths: 40, 500
-
-     "**id**", "Identificador de transacción. Permite mapear respuestas a peticiones."
-     "**status**","Estado de cumplimiento de la transacción."
-     "**msg**", "Respuesta del resultado de la transacción."
-     "**value**", "Valor que se desea setear al parámetro definido en **param**." 
-     "**token**", "Token HMAC para autenticación e integridad de datos."
-..
-
-.. note::
-  La respuesta deberá reflejar el mismo id recibido en la petición.
-..
-
-ENVÍO DE ALERTAS
-^^^^^^^^^^^^^^^^
-
-**Orientación**
-
-Yubox -> Cliente
-
-.. csv-table::  **Parámetros de Entrada**
-   :header: "Atributo", "Detalle"
-   :widths: 40, 500
-
-   "**t**", "Tipo de trama siendo 1 una trama de alerta."
-   "**msg**", "Cadena que describe la alerta."
-   "**severidad**", "Nivel de riesgo de la alerta." 
-..
-
-**JSON IN**
-
-.. code-block:: javascript
-
- {
-   "t":1,
-   "msg": (string),
-   "severidad": (int)
- }
-..
-
-**JSON EJEMPLO**
-
-.. code-block:: javascript
-
- {
-    "t":1,
-    "msg":"Oxígeno agotado",
-    "severidad":5
- }
-..

@@ -14,10 +14,8 @@ y dar una oportunidad a miles de pacientes que son devueltos a casa sin esperanz
 
 **Descripción del Proyecto**
 
-
 .. toctree::
-   :hidden:
-
+   
    files/app
    files/firmware
    files/webserver
