@@ -14,20 +14,13 @@ El sistema estará constituido por los siguientes componentes:
 -CAMo
 -Seguridades y Administración
 
-------------
-
 **Estructura de la Aplicación**
 
 .. image:: img/structure.png
   :width: 400
 
-+--------------------------------------------------------------------------------------------------------- +
-| La arquitectura seleccionada para el desarrollo del sistema es una arquitectura n-capa con cliente WEB. Identificamos como Usuarios comunes aquellos que acceden al sistema para hacer uso de la funcionalidad de la aplicación, e identificamos como usuarios administradores del sistema a aquellos que acceden para realizar mantenimientode la aplicación, administrar seguridades, catálogos, entre otros.
-| Ambos tipos de usuarios dispondrán de una aplicación cliente web, que se comunicará con una aplicación de servidor la cual implementará las reglas del negocio y a su vez será la de intermediaria entre la aplicación cliente web y la base de datos                 |
-|                              |
-+------------------------------+
-
-
+FLUJO DE TRABAJO
+-----------------
 
 FUNCIONES
 ^^^^^^^^^
@@ -73,8 +66,12 @@ CIERRE DE CESIÓN
 TRATAMIENTO DEL PACIENTE
 ------------------------
 
+.. image:: img/paciente.png
+  :width: 400
+
 HISTORIA CLÍNICA
 ^^^^^^^^^^^^^^^^
+
 Número que identifica de manera única al paciente, incluso si regresa a la Institución. 
 Puede ser utilizado el número de DNI. A obtener del HIS del lugar de atención, de ex
 

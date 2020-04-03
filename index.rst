@@ -10,7 +10,7 @@ y dar una oportunidad a miles de pacientes que son devueltos a casa sin esperanz
 
 **Sitio Web**
 
-.. _Python: http://www.python.org/
+
 
 **Descripción del Proyecto**
 
