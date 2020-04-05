@@ -8,8 +8,9 @@ OPENVENTI
    
 
    app
-   datos
-   logic
+   firmware
+   hardware
+   webswerver
 
 
 

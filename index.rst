@@ -17,6 +17,7 @@ y dar una oportunidad a miles de pacientes que son devueltos a casa sin esperanz
 .. toctree::
    
    files/app
+   files/hardware
    files/firmware
    files/webserver
    
